@@ -80,6 +80,28 @@ catch(PDOException $e){
     return [];
 }
 }
+function UpdateUser($user_id, $fname, $lname, $birthday, $sex, $username, $password) {
+    try{
+        $con = $this->opencon();
+        $query = $con->prepare("UPDATE users SET first_name=?, last_name=?, birthday=?, sex=?, user=?, pass=? WHERE user_id=?");
+        return $query->execute([$fname, $lname, $birthday, $sex, $username, $password, $user_id]);
+}
+catch(PDOException $e){
+    $con->rollBack();
+    return false;
 
+}
+}
 
+function UpdateUserAddress($user_id, $street, $barangay, $city, $province) {
+    try{
+        $con = $this->opencon();
+        $query = $con->prepare("UPDATE user_address SET user_street=?, user_barangay=?, user_city=?, user_province=? WHERE user_id=?");
+        return $query->execute([$street, $barangay, $city, $province, $user_id]);
+}
+catch(PDOException $e){
+    $con->rollBack();
+    return false;
+}
+}
 }

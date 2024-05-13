@@ -9,8 +9,35 @@ $con = new database();
 
  } else {
     $row=$con->viewdata($user_id);
-    echo $row['last_name'];
  }
+
+ if(isset($_POST['Update'])) {
+  $fname = $_POST['firstName'];
+  $lname = $_POST['lastName'];
+  $birthday = $_POST['birthday'];
+  $sex = $_POST['sex'];
+  $username = $_POST['user'];
+  $password = $_POST['pass'];
+  $confirm = $_POST['pass2'];
+  $street = $_POST['street'];
+  $barangay = $_POST['barangay'];
+  $city = $_POST['city'];
+  $province = $_POST['province'];
+  $user_id =$_POST['user_id'];
+
+  if($password == $confirm){
+    if ($con->UpdateUser($user_id, $fname, $lname, $birthday, $sex, $username, $password)){
+      if ($con->UpdateUserAddress($user_id, $street, $barangay, $city, $province)) {
+        header('location:index.php');
+        exit();
+       } else {
+      $error = "Error occured. Try Again.";
+    } 
+    } else {
+      $error = "Error occured. Try Again.";
+  }
+ }
+}
  ?>
 
 <!DOCTYPE html>
@@ -77,7 +104,7 @@ $con = new database();
         </div>
         <div class="form-group">
       <label for="password">Confirm Password: </label>
-      <input type="password" class="form-control" name="pass2" placeholder="Re-Enter password" value="<?php echo $row['pass']; ?>" required>
+      <input type="password" class="form-control" name="pass2" placeholder="Re-Enter password" required>
     </div>
       </div>
     </div>
@@ -112,7 +139,8 @@ $con = new database();
     <div class="container">
     <div class="row justify-content-center gx-0">
         <div class="col-lg-3 col-md-4"> 
-            <input type="submit" name="multisave" class="btn btn-outline-primary btn-block mt-4" value="Sign Up">
+        <input type="hidden" name="user_id" value="<?php echo $row['user_id']; ?>">
+            <input type="submit" name="Update" class="btn btn-outline-primary btn-block mt-4" value="Update">
         </div>
         <div class="col-lg-3 col-md-4"> 
             <a class="btn btn-outline-danger btn-block mt-4" href="login.php">Go Back</a>
