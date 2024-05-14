@@ -36,7 +36,6 @@ if ($password == $confirm) {
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php include("includes/navbar.php");?>
 
 <div class="container-fluid login-container rounded shadow">
   <h2 class="text-center mb-4">Sign Up</h2>

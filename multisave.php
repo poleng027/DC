@@ -5,11 +5,7 @@
 require_once('classes/database.php');
 
 $con = new database();
-session_start();
 
-if(empty($_SESSION['user'])){
-  header('location:login.php');
-}
 if (isset($_POST['multisave'])) {
     $fname = $_POST['firstName'];
     $lname = $_POST['lastName'];
@@ -69,7 +65,6 @@ if (isset($_POST['multisave'])) {
 </head>
 <body>
 
-<?php include("includes/navbar.php");?>
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4"> Registration Form</h3>
   <form method="post">
@@ -146,7 +141,7 @@ if (isset($_POST['multisave'])) {
     <div class="container">
     <div class="row justify-content-center gx-0">
         <div class="col-lg-3 col-md-4"> 
-            <input type="submit" name="multisave" class="btn btn-outline-primary btn-block mt-4" value="Sign Up">
+            <input type="submit" name="multisave" class="btn btn-outline-primary btn-block mt-4"  value="Sign Up">
         </div>
         <div class="col-lg-3 col-md-4"> 
             <a class="btn btn-outline-danger btn-block mt-4" href="login.php">Go Back</a>
