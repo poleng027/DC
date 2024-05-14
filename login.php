@@ -3,7 +3,7 @@ require_once('classes/database.php');
 $con = new database();
 session_start();
 
-if($_SESSION['user']){
+if(isset($_SESSION['user'])){
   header('location:index.php');
 }
 
