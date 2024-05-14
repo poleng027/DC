@@ -1,6 +1,7 @@
 <?php
 require_once('classes/database.php');
 $con = new database();
+session_start();
 
 if(isset($_POST['login'])) {
   $username = $_POST ['user'];
@@ -9,8 +10,9 @@ if(isset($_POST['login'])) {
   if ($result){
     if ($result ['user'] == $_POST['user'] && $result['pass'] == $_POST['pass']) 
     {
-      // $_SESSION['user'] = $result['user'];
+    $_SESSION['user'] = $result['user'];
       header('location:index.php');
+    
     } else{
       echo 'error';
     }
@@ -37,7 +39,7 @@ if(isset($_POST['login'])) {
   <h2 class="text-center mb-4">Login</h2>
   <form method="post">
     <div class="form-group">
-      <label for="username">Userame:</label>
+      <label for="username">Username:</label>
       <input type="text" class="form-control" name="user" placeholder="Username">
     </div>
     <div class="form-group">

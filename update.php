@@ -1,6 +1,11 @@
 <?php
 require_once('classes/database.php');
 $con = new database();
+session_start();
+
+if(empty($_SESSION['user'])){
+  header('location:login.php');
+}
 
  $user_id=$_POST['user_id'];
 
@@ -62,7 +67,7 @@ $con = new database();
 
 </head>
 <body>
-
+<?php include("includes/navbar.php");?>
 <div class="container custom-container rounded-3 shadow my-5 p-3 px-5">
   <h3 class="text-center mt-4">Update Form</h3>
   <form method="post">
