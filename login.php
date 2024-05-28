@@ -24,7 +24,6 @@ if (isset($_POST['login'])) {
       $_SESSION['user'] = $result['user'];
       $_SESSION['account_type'] = $result['account_type'];
       $_SESSION['user_id'] = $result['user_id'];
-      $_SESSION['user_profile_picture'] = $result['user_profile_picture'];
       $_SESSION['first_name'] = $result['first_name'];
       $_SESSION['last_name'] = $result['last_name'];
       $_SESSION['birthday'] = $result['birthday'];
