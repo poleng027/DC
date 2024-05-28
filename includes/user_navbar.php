@@ -1,5 +1,8 @@
 <?php
 $current_page = basename($_SERVER['PHP_SELF']);
+require_once('classes/database.php');
+$con = new Database();
+
 $id = $_SESSION['user_id'];
 $data = $con->viewdata($id);
 
@@ -8,10 +11,24 @@ $profilePicture = $_SESSION['user_profile_picture'] ?? 'path/to/default/profile_
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Welcome, <?php echo $_SESSION['user']; ?>!</a>
+  <!-- <a class="navbar-brand" href="#">Welcome, <?php echo $_SESSION['user']; ?>!</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item <?php echo ($current_page == 'user_account.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="user_account.php">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item <?php echo ($current_page == 'enrolphp.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="enrol.php">Enrol Now</a>
+      </li>
+      <li class="nav-item <?php echo ($current_page == 'enrolled_courses.php') ? 'active' : ''; ?>">
+        <a class="nav-link" href="enrolled_courses.php">My Courses</a>
+      </li>
+    </ul>
+  </div>
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
  
